@@ -5,14 +5,14 @@
 
 
 \begin{document}
-  \pgfcalendarcalc[Month]{2024-02-01}{\Month}
+  \pgfcalendarcalc[Month]{2024-03-01}{\Month}
   \pgfcalendarcalc[LastDay]{\MonthY-\MonthM-last}{\LastDay}
 
   \nbkeys{
     my notes/.style={fill dotted,label={north east}{#1},},
     my notes/.default=Notes,
     every canvas/.style={/notebook/.cd,
-      foldmark,punchmarks={65mm/2,110mm/2},
+      % foldmark, punchmarks={65mm/2,110mm/2},
       paginate={\MonthY-\MonthM[\thepage]},
     }
   }
@@ -61,13 +61,12 @@
     \expandafter\ifnum\WD<5\relax
       \notebookpage{
         columns={%
-          {\textbf{\pgfcalendarweekdayname{\WD}, \D.\M.\Y}}/5,%
+          {\textbf{\pgfcalendarweekdayname{\WD}, \D \, \pgfcalendarmonthname{\MonthM}, \Y}}/5,%
           \color{gray}LOC/1%
         },
-        columns={[bottom,draw]\color{gray}W/2,\color{gray}H/2,\color{gray}R/2},
-        todo={[draw]3},
-        my notes={Journal},
-        time codes
+        % columns={[bottom,draw]\color{gray}W/2,\color{gray}H/2,\color{gray}R/2},
+        % todo={[draw]3},
+        my notes={Journal}
       }
       \notebookpage{my notes}
     \fi

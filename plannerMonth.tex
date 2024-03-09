@@ -1,0 +1,49 @@
+\documentclass[12pt,twoside,openright]{article}
+\usepackage[a5paper,margin=8mm,bindingoffset=4mm]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{notebook}
+
+\begin{document}
+
+    \pgfcalendarcalc[Month]{2024-03-01}{\Month}
+    \pgfcalendarcalc[LastDay]{\MonthY-\MonthM-last}{\LastDay}
+    
+    
+    \notebookpage{
+        calendar/next week/.style={},
+        calendar=\Month,
+        every label/.append style={font=\Huge},
+        fill elem={},
+        label={center}{
+            \Huge \MonthY\\\pgfcalendarmonthname{\MonthM}
+        },
+    }
+    \notebookpage{
+        % label={north}{Monday},
+        % label={south}{Tuesday},
+        % label={east}{Wednesday},
+        % label={west}{Thursday},
+        % label={center}{Friday},
+        fill dotted,
+        % days codes,
+        paginate,
+        vline={[gray,dash pattern=on 2.5mm off 2.5mm, dash phase=-1.25mm, line width=0.5\pgflinewidth]20mm},}
+    \notebookpage{fill dotted,paginate}
+    
+    % \foreach \DayOfMonth [parse=true] in {0,...,\LastDayD-1} {
+    %     \pgfcalendarcalc{\Month+\DayOfMonth}{\ThisDay}
+    %     \notebookpage{
+    %         box={\textbf{\pgfcalendarweekdayname{\WD}, \D \, \pgfcalendarmonthname{\MonthM}, \Y}},
+    %         todo=3,
+    %         columns={Column 1/2,Column 2/3,Col 3/1},
+    %         fill dotted, paginate, foldmark
+    %     }
+    %     \notebookpage{
+    %         fill dotted,
+    %         paginate, 
+    %         foldmark,
+    %         % box={bottom}
+    %         % box={[bottom,fill=green!10]{Hello}},
+    %     }
+    % }
+\end{document}
