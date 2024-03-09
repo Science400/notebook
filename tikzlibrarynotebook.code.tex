@@ -99,7 +99,7 @@
   },
   fill dotted/.style 2 opt={}{
     fill elem={[#1]
-      /notebook/every pattern,pattern={Dots[distance=0.25in,radius=.8pt,align]}
+      /notebook/every pattern,pattern={Dots[distance=5mm,radius=.8pt,align]}
     },
   },
   fill squares/.style 2 opt={}{
@@ -172,7 +172,7 @@
     color=black,
   },
   every label/.style={
-    fill=red,
+    fill=white,
     align=center,
     font=\itshape\color{gray},
   },
@@ -187,6 +187,11 @@
        (@|-elem.south);
     }
   },
+  vline/.code 2 opt={gray}{%
+    \draw[#1] ($(elem.north west)+(east:#2)$)%
+                 -- ($(elem.south west)+(east:#2)$);
+  },
+  vline/.default={5mm},
   % Special Elements
   box/.style 2 opt={draw}{
     elem={[#1]{
@@ -336,7 +341,7 @@
     day letter headings,
   },
   /notebook/calendar/calendar week/.code={
-    \itshape\color{gray}W#1
+    \itshape\color{gray}KW#1
   },
   /notebook/calendar/.style 2 opt={draw}{
     elem=[{inner sep=3pt,#1}]{
@@ -360,12 +365,12 @@
 }
 
 \csdef{nb@weekday@0}{Mo}
-\csdef{nb@weekday@1}{Tu}
-\csdef{nb@weekday@2}{We}
-\csdef{nb@weekday@3}{Th}
+\csdef{nb@weekday@1}{Di}
+\csdef{nb@weekday@2}{Mi}
+\csdef{nb@weekday@3}{Do}
 \csdef{nb@weekday@4}{Fr}
 \csdef{nb@weekday@5}{\bfseries Sa}
-\csdef{nb@weekday@6}{\bfseries Su}
+\csdef{nb@weekday@6}{\bfseries So}
 
 \def\nb@parsemonth#1#2{
   \pgfcalendarcalc[nb@]{#1}{\nb@tmp}
@@ -379,7 +384,7 @@
     \scriptsize%
     \nbkeys{
       elem={[draw]\node at (.5\elemwidth,0){\strut \Y{} - \pgfcalendarmonthname{\M}};},
-      columns={Date/1,#2}
+      columns={Datum/1,#2}
     }
     \def\nb@cols{}
     \foreach \field/\width in {#2} {
